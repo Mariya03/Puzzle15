@@ -16,22 +16,38 @@ namespace Puzzle15
         {
             InitializeComponent();
             InitializePuzzleArea();
-            InitializeButtons();
+            InitializeBlocks();
         }
 
         private void InitializePuzzleArea()
         {
-            this.BackColor = Color.Purple;
-            this.Text = "Puzzle15"; 
+            this.BackColor = Color.CornflowerBlue;
+            this.Text = "Puzzle15";
+            this.ClientSize = new Size(500, 500);
         }
 
-        private void InitializeButtons()
+        private void InitializeBlocks()
         {
-            Button button;
-            for(int i=1; i < 16; i++)
+            int blockCount = 1;
+            PuzzleBlock block;
+            for(int row = 1; row < 5; row++)
             {
-                button = new Button();
-                this.Controls.Add(button);
+
+                for (int col = 1; col < 5; col++)
+                {
+                    block = new PuzzleBlock();
+                    block.Top = row * 100;
+                    block.Left = col * 100;
+                    block.Text = blockCount.ToString();
+                    if(blockCount == 16)
+                    {
+                        block.Text = string.Empty;
+                        block.BackColor = Color.DimGray;
+                    }
+
+                    blockCount++;
+                    this.Controls.Add(block);
+                }
             }
         }
     }

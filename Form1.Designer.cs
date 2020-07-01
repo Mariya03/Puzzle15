@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // PuzzleArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 450);
-            this.Name = "Form1";
+            this.ClientSize = new System.Drawing.Size(595, 575);
+            this.Name = "PuzzleArea";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
