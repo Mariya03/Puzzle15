@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 575);
+            this.ClientSize = new System.Drawing.Size(673, 575);
             this.Name = "PuzzleArea";
             this.Text = "Form1";
             this.ResumeLayout(false);

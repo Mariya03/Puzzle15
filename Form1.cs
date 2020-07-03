@@ -17,6 +17,7 @@ namespace Puzzle15
             InitializeComponent();
             InitializePuzzleArea();
             InitializeBlocks();
+
         }
 
         private void InitializePuzzleArea()
@@ -35,20 +36,44 @@ namespace Puzzle15
 
                 for (int col = 1; col < 5; col++)
                 {
-                    block = new PuzzleBlock();
-                    block.Top = row * 100;
-                    block.Left = col * 100;
-                    block.Text = blockCount.ToString();
+                    block = new PuzzleBlock()
+                    {
+                        Top = row * 84,
+                        Left = col * 84,
+                        Text = blockCount.ToString(),
+                        //Name = "block" + blockCount.ToString()
+                };
+
+                  //block.Click += new EventHandler(Block_Click);
+                    block.Click += Block_Click;
+
                     if(blockCount == 16)
                     {
+                        block.Name = "EmptyBlock";
+                        block.FlatStyle = FlatStyle.Flat;
                         block.Text = string.Empty;
                         block.BackColor = Color.DimGray;
+                        block.FlatAppearance.BorderSize = 0;
                     }
 
                     blockCount++;
                     this.Controls.Add(block);
                 }
             }
+        }
+
+        private void Block_Click(object sender, EventArgs e)
+        {
+            Button block = (Button)sender;
+            SwapBlocks(block);
+           // MessageBox.Show(block.Name);
+
+        }
+
+        private void SwapBlocks(Button block)
+        {
+            Button emptyBlock = (Button)this.Controls["EmptyBlock"];
+
         }
     }
 }
