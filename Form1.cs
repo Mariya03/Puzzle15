@@ -41,7 +41,7 @@ namespace Puzzle15
                         Top = row * 84,
                         Left = col * 84,
                         Text = blockCount.ToString(),
-                        //Name = "block" + blockCount.ToString()
+                        Name = "block" + blockCount.ToString()
                 };
 
                   //block.Click += new EventHandler(Block_Click);
@@ -73,7 +73,9 @@ namespace Puzzle15
         private void SwapBlocks(Button block)
         {
             Button emptyBlock = (Button)this.Controls["EmptyBlock"];
-
+            Point oldLocation = block.Location;
+            block.Location = emptyBlock.Location;
+            emptyBlock.Location = oldLocation;
         }
     }
 }
