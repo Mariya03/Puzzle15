@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -65,7 +66,11 @@ namespace Puzzle15
         private void Block_Click(object sender, EventArgs e)
         {
             Button block = (Button)sender;
-            SwapBlocks(block);
+            if (IsAdjacent(block))
+            {
+                SwapBlocks(block);
+            }
+               
            // MessageBox.Show(block.Name);
 
         }
@@ -78,7 +83,7 @@ namespace Puzzle15
             emptyBlock.Location = oldLocation;
         }
 
-        private void IsAdjacent(Button block)
+        private bool IsAdjacent(Button block)
         {
             double a;
             double b;
@@ -87,8 +92,16 @@ namespace Puzzle15
 
             a = Math.Abs(emptyblock.Top - block.Top);
             b = Math.Abs(emptyblock.Left - block.Left);
+            c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
             
-
+            if(c < 85)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
