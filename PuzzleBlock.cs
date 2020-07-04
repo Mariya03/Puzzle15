@@ -23,5 +23,9 @@ namespace Puzzle15
             this.Text = "0";
             this.Font = new Font("Roboto", 18);
         }
+
+        
     }
+
+
 }

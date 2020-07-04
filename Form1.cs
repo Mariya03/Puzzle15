@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,15 @@ namespace Puzzle15
 {
     public partial class PuzzleArea : Form
     {
+        Random rand = new Random();
+        List<Point> initialLocations = new List<Point>();
+
         public PuzzleArea()
         {
             InitializeComponent();
             InitializePuzzleArea();
             InitializeBlocks();
-
+            ShuffleBlocks();
         }
 
         private void InitializePuzzleArea()
@@ -47,6 +51,7 @@ namespace Puzzle15
 
                   //block.Click += new EventHandler(Block_Click);
                     block.Click += Block_Click;
+                    initialLocations.Add(block.Location);
 
                     if(blockCount == 16)
                     {
@@ -69,6 +74,7 @@ namespace Puzzle15
             if (IsAdjacent(block))
             {
                 SwapBlocks(block);
+                CheckForWin();
             }
                
            // MessageBox.Show(block.Name);
@@ -81,6 +87,7 @@ namespace Puzzle15
             Point oldLocation = block.Location;
             block.Location = emptyBlock.Location;
             emptyBlock.Location = oldLocation;
+
         }
 
         private bool IsAdjacent(Button block)
@@ -103,5 +110,50 @@ namespace Puzzle15
                 return false;
             }
         }
+
+        private void ShuffleBlocks()
+        {
+            int randNumber;
+            string blockName;
+            Button block;
+
+           for(int i = 0; i < 100; i++)
+            {
+                randNumber = rand.Next(1, 16);
+                blockName = "Block" + randNumber.ToString();
+                block = (Button)this.Controls[blockName];
+                SwapBlocks(block);
+            }
+
+
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShuffleBlocks();
+        }
+        private void CheckForWin()
+        {
+            string blockName;
+            Button block;
+
+            for (int i = 1; i < 16; i++)
+            {
+                blockName = "Block" + i.ToString();
+                block = (Button)this.Controls[blockName];
+                if(block.Location != initialLocations[i-1])
+                {
+                    return;
+                }
+              
+            }
+            PuzzleSolved();
+        }
+        private void PuzzleSolved()
+        {
+            MessageBox.Show("You solved that!");
+        }
+
+       
     }
 }
