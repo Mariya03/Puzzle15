@@ -77,5 +77,18 @@ namespace Puzzle15
             block.Location = emptyBlock.Location;
             emptyBlock.Location = oldLocation;
         }
+
+        private void IsAdjacent(Button block)
+        {
+            double a;
+            double b;
+            double c;
+            Button emptyblock = (Button)this.Controls["EmptyBlock"];
+
+            a = Math.Abs(emptyblock.Top - block.Top);
+            b = Math.Abs(emptyblock.Left - block.Left);
+            
+
+        }
     }
 }
